@@ -1,8 +1,3 @@
-ICM_curriculum_plan_track
-
-### 🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴
-### 🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢
-
 # 🏥 Aims
 
 NHS ePortfolio is useful but not too customisable, as far as I'm aware there's no API or way to build extensions for it.
@@ -15,3 +10,7 @@ It will also do the same for the Top 30 cases.
 After doing that it will compile a report, showing what still needs to get done. My example of the report is [here](https://callumgwtaylor.github.io/ICM_curriculum_plan_track/curriculum_tracker/curriculum.html)
 
 My hope is that this will serve as a source of pressure for me to keep on track of everything.
+
+### 🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴
+### ➡️
+### 🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢
