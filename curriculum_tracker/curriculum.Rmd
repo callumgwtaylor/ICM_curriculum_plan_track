@@ -6,8 +6,11 @@ output: html_document
 ```{r load_packages, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
 
 ## docker run -d -p 4445:4444 selenium/standalone-chrome
+<<<<<<< HEAD
 
 ## Although really now you just need to run 'docker start 7e8eecaab437'
+=======
+>>>>>>> master
 ## docker ps
 
 source("set_up_ficm_curriculum.R")
