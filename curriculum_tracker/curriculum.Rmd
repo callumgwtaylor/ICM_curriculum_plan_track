@@ -1,0 +1,133 @@
+---
+title: "ICM Curriculum Progress"
+output: html_document
+---
+
+```{r load_packages, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+
+## docker run -d -p 4445:4444 selenium/standalone-chrome
+## docker ps
+
+source("set_up_ficm_curriculum.R")
+source("ficm_curriculum.R")
+```
+
+```{r filter_table, include=FALSE}
+curriculum_red_table <- curriculum %>%
+  filter(circle == "Red Circle") %>%
+  select(competency) %>%
+  knitr::kable()
+
+curriculum_green_table <- curriculum %>%
+  filter(circle == "Green Circle") %>%
+  select(competency) %>%
+  knitr::kable()
+
+competency_total <- curriculum %>% nrow()
+competency_red <- curriculum %>% filter(circle == "Red Circle") %>% nrow()
+competency_green <- curriculum %>% filter(circle == "Green Circle") %>% nrow()
+
+```
+
+```{r export_table, message=FALSE, warning=FALSE, include=FALSE}
+today <- Sys.Date()
+today <- str_replace_all(today, "-", "_")
+file_name <- str_c(today, "-red_competency_table.csv", sep = "")
+
+curriculum_red_table_export <- curriculum %>%
+  filter(circle == "Red Circle") %>%
+  select(competency)
+
+write_excel_csv(curriculum_red_table_export, file_name)
+```
+  
+```{r load case_packages, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+source("ficm_thirty_cases.R")
+```
+
+```{r filter_another_table, include=FALSE}
+thirtycases_red_table <- thirtycases %>%
+  filter(circle == "Red Circle") %>%
+  select(case) %>%
+  knitr::kable()
+
+thirtycases_green_table <- thirtycases %>%
+  filter(circle == "Green Circle") %>%
+  select(case) %>%
+  knitr::kable()
+
+thirtycases_total <- thirtycases %>% nrow()
+thirtycases_red <- thirtycases %>% filter(circle == "Red Circle") %>% nrow()
+thirtycases_green <- thirtycases %>% filter(circle == "Green Circle") %>% nrow()
+
+```
+
+```{r export_case_table, message=FALSE, warning=FALSE, include=FALSE}
+today <- Sys.Date()
+today <- str_replace_all(today, "-", "_")
+file_name <- str_c(today, "-red_cases_table.csv", sep = "")
+
+cases_red_table <- thirtycases %>%
+  filter(circle == "Red Circle") %>%
+  select(case)
+
+write_excel_csv(cases_red_table, file_name)
+```
+
+# Summary
+
+```{r table, echo=FALSE, fig.height=5, fig.width=20, message=FALSE, warning=FALSE, paged.print=FALSE}
+summary <- tibble(Area = c("Competencies", "Cases", "Competencies", "Cases"),
+          Numbers = c(competency_red, 10 - thirtycases_green, competency_green, thirtycases_green),
+          Colours = c("Red", "Red", "Green", "Green"))
+
+colours_portfolio <- c("#39F224", "#F33030")
+
+summary %>%
+  ggplot(aes(Area, Numbers, fill = Colours)) +
+  geom_bar(stat = "identity", position = "fill") +
+  coord_flip() +
+  theme_minimal() +
+  scale_fill_manual(values = colours_portfolio) +
+  labs(title = "Progress So Far",
+       xlab = "Proportion",
+       ylab = "Area") +
+  theme(legend.position = "none")
+
+```
+
+# Competencies
+
+## 🟢vs🔴
+
+## There are `r competency_total` total competencies
+
+### So far I have `r competency_green` signed off
+
+### I need to get `r competency_red` more signed off
+
+## 🔴 To Complete:
+
+`r curriculum_red_table`
+
+## 🟢 Completed:
+
+`r curriculum_green_table`
+
+# Cases
+
+## 🟢vs🔴
+
+## There are `r thirtycases_total` total competencies
+
+### So far I have `r thirtycases_green` signed off
+
+### I need to get `r 10 - thirtycases_green` more signed off 
+
+## 🔴 To Complete:
+
+`r thirtycases_red_table`
+
+## 🟢 Completed:
+
+`r thirtycases_green_table`
