@@ -15,7 +15,7 @@ ePortfolio_password <- rstudioapi::askForPassword("ePortfolio password")
 
 ##
 
-element <- remDr$findElement(using = 'css selector', "#ctl00_cph1_BaseMaster_ucUserLoginBox_ePortfolioLogin_UserName")
+element <- remDr$findElement(using = 'css selector', "#ctl00_ctl00_cph1_BaseMaster_cph2_UserMaster_ucUserLoginBox_ePortfolioLogin_UserName")
 element$sendKeysToElement(list(ePortfolio_username)) # What we've done here is load the username box and entered our username
 
 
@@ -28,5 +28,6 @@ element$sendKeysToElement(list(ePortfolio_password))
 
 ##
 
-element <- remDr$findElement(using = 'css selector', "#ctl00_cph1_BaseMaster_ucUserLoginBox_ePortfolioLogin_LoginButton")
+element <- remDr$findElement(using = 'css selector', "#ctl00_ctl00_cph1_BaseMaster_cph2_UserMaster_ucUserLoginBox_ePortfolioLogin_LoginButton")
 element$clickElement()
+# remDr$screenshot(display = TRUE)
